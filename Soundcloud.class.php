@@ -46,6 +46,7 @@ require_once 'GetTrackAbstract.php';
 		{
 			$output = array();
 			$id = $this->GetTrackID($link);
+			//using simple API to get trackinforurl to get HQ music, but, it can't get full lenght music from VIP account when they block download.
 	    	if($id)
 	    	{
 	    		
