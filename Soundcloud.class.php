@@ -7,54 +7,53 @@ require_once 'GetTrackAbstract.php';
 		protected $clientID;
 		protected $track;
 		protected $link;
+        private $type;
+        private $id;
+
 	    function __construct($link = "") {
 	        $this->clientID = "69b6a6bc4f7d483fd21b170137a9cd51";
 	        $this->link = $link;
+            $this->type = $this->checkType();
+            $this->id = $this->GetTrackID();
 	    }
 
-		protected function GetTrackID($link = "")
+		protected function GetTrackID()
 		{
-			if($link == "")
-			{
-				$link = $this->link;
-			}
 			$pattern = '/[^>]*soundcloud.com\/[^>]*\/(.*)/s';
-			preg_match($pattern, $link, $matches);
-			return $matches[1];
+			if(preg_match($pattern, $this->link, $matches)) {
+                return $matches[1];
+            }
+            else{
+                return false;
+            }
 		}
 
-		public function checkType($link = "") {
-			if($link == "")
-			{
-				$link = $this->link;
-			}
+		public function checkType() {
 			//sound set
 			$pattern = '/[^>]*soundcloud.com\/[^>]*\/sets\/(.*)/s';
-			if(preg_match($pattern, $link,$matches) == 1)
+			if(preg_match($pattern, $this->link,$matches) == 1)
 			{
 				return "set";
 			}
 			$pattern = '/[^>]*soundcloud.com\/[^>]*\/(.*)/s';
-			if(preg_match($pattern, $link,$matches) == 1)
+			if(preg_match($pattern, $this->link,$matches) == 1)
 			{
 				return "sound";
 			}
 			return null;
 		}
 
-		public function GetTrack($link = "")
+		public function GetTrack()
 		{
 			$output = array();
-			$id = $this->GetTrackID($link);
-	    	if($id)
+	    	if($this->id)
 	    	{
 	    		
 				$fakePath = $this->GetFakePath();
-	    		$type = $this->checkType($link);
-	    		switch ($type) {
+	    		switch ($this->type) {
 	    			//https://soundcloud.com/newyorker/the-political-scene-june-13
 	    			case 'sound':
-	    				$trackinforURL = "http://api.soundcloud.com/resolve.json?url={$link}&client_id={$this->clientID}";
+	    				$trackinforURL = "http://api.soundcloud.com/resolve.json?url={$this->link}&client_id={$this->clientID}";
 	    				$trackJS = json_decode(curlClass::getInstance()->fetchURL($trackinforURL));
 	    				var_dump($trackJS);
 	    				if($trackJS)
@@ -65,7 +64,7 @@ require_once 'GetTrackAbstract.php';
 	    				break;
 	    			//https://soundcloud.com/grimeybear/sets/swi-ch
 	    			case 'set':
-	    				$trackinforURL = "http://api.soundcloud.com/resolve.json?url={$link}&client_id={$this->clientID}";
+	    				$trackinforURL = "http://api.soundcloud.com/resolve.json?url={$this->link}&client_id={$this->clientID}";
 	    				$trackJS = json_decode(curlClass::getInstance()->fetchURL($trackinforURL));
 	    				
 	    				if($trackJS)

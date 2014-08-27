@@ -6,37 +6,25 @@ require_once 'GetTrackAbstract.php';
 class NhacCuaTui extends GetTrackAbstract{
 	
 	private $link;
+    private $type;
 
 	public function __construct($link = "") {
 		$this->link = $link;
+        $this->type = $this->checkType();
 	}
 
-	protected function GetTrackID($link = "")
-	{
-		return null;
-	}
-
-	public function checkType($link = "") {
-		if($link == "")
-		{
-			$link = $this->link;
-		}
+	public function checkType() {
 		$regexlink_baihat = '/http\:\/\/(www\.)?nhaccuatui\.com\/(.*)\/[^>]*\.[^>]*\.html/';
-		if(preg_match($regexlink_baihat, $link,$matches)==1)
+		if(preg_match($regexlink_baihat, $this->link,$matches)==1)
 			return $matches[2];
 		return null;
 	}
 
-	public function GetTrack($link = "") {
+	public function GetTrack() {
 		
 		$output = array();
 
-		if($link == "")
-		{
-			$link = $this->link;
-		}
-
-		$content = curlClass::getInstance()->fetchURL($link);
+		$content = curlClass::getInstance()->fetchURL($this->link);
 		$regex = '/<link rel="video_src" href="(.*?)"/is';
 		preg_match($regex, $content, $matches);
 		$Content = curlClass::getInstance()->getRedirectURL($matches[1]);
@@ -47,9 +35,7 @@ class NhacCuaTui extends GetTrackAbstract{
 
 		if ($xml)
 		{
-			$type = $this->checkType($link);
-
-			switch ($type) {
+			switch ($this->type) {
 				case 'bai-hat':
 					$output[] = new Track(trim($xml->track->creator), $xml->track->title, $xml->track->creator, $xml->track->location, $xml->track->info, $xml->track->image);
 					break;
