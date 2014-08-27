@@ -18,30 +18,27 @@
 		$trackList  = array();
 		$urlInfo = parse_url($_GET["url"]);
 		$trackCount = 0;
-
+        $link = $_GET["url"];
+        $trackGetter = null;
 		switch ($urlInfo['host']) {
 			case 'mp3.zing.vn':
-					$ZingMp3 = new ZingMp3();
-					$trackList = $ZingMp3->GetTrack($_GET["url"]);
+                    $trackGetter = new ZingMp3($link);
 				break;
 			case 'soundcloud.com':
-					$Soundcloud = new SoundcloudAPI();
-					$trackList = $Soundcloud->GetTrack($_GET["url"]);
+                    $trackGetter = new SoundcloudAPI($link);
 				break;
 			case 'www.nhaccuatui.com':
-					$NhacCuaTui = new NhacCuaTui();
-					$trackList = $NhacCuaTui->GetTrack($_GET["url"]);
+                    $trackGetter = new NhacCuaTui($link);
 				break;
 
 			case (preg_match('/.*zippyshare.com.*/', $urlInfo['host']) ? true : false) :
-					$ZippyShare = new ZippyShare();
-					$trackList = $ZippyShare->GetTrack($_GET["url"]);
+                    $trackGetter = new ZippyShare($link);
 				break;
 		}
+        $trackList = $trackGetter->GetTrack();
 		$trackCount = count($trackList);
 		for ($i=0; $i < count($trackList); $i++) { 
 			$PlaylistMaker->AddTrack($trackList[$i]);
 		}
 		echo $PlaylistMaker->MakePlaylist();
 	}
-?>
