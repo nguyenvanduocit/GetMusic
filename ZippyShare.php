@@ -11,30 +11,17 @@ class ZippyShare extends GetTrackAbstract{
 		$this->link = $link;
 	}
 
-	protected function GetTrackID($link = "")
-	{
-		return null;
-	}
-
-	public function checkLink($link = "") {
-		if($link == "")
-		{
-			$link = $this->link;
-		}
+	public function checkLink() {
 		$regexlink_baihat = '/http\:\/\/(www\.)?mp3\.zing\.vn\/.*\/(.*)\.html/';
 		if (preg_match($regexlink_baihat, $this->link)) 
 			return true;
 		return false;
 	}
 
-	public function GetTrack($link = "") {
+	public function GetTrack() {
 		$output = array();
-		if($link == "")
-		{
-			$link = $this->link;
-		}
 
-		$url=explode('/',$link);
+		$url=explode('/',$this->link);
 		$server = explode('.',$url[2]);
 		$fakePath = $this->GetFakePath();
 

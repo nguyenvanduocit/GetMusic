@@ -20,7 +20,7 @@ class Track
     {
         return preg_replace("/[\n\r]/","",trim($string));
     }
-    public function ToString()
+    public function toXML()
     {
         $output ="<track>"; 
         if($this->title != "")
@@ -38,5 +38,24 @@ class Track
             $output .= "<image>$this->image</image>";
         $output .= "</track>";
     	return $output;
+    }
+    public function toJson()
+    {
+        $output ="{";
+        if($this->title != "")
+            $output .= "'title:'{$this->title},";
+
+        if($this->creator != "")
+            $output .= "'creator:'{$this->creator},";
+        if($this->annotation != "")
+            $output .= "'annotation:'{$this->annotation},";
+        if($this->location != "")
+            $output .="'location:'{$this->location},";
+        if($this->info != "")
+            $output .="'info:'{$this->info},";
+        if($this->image != "")
+            $output .= "'image:'{$this->image}";
+        $output .= "}";
+        return $output;
     }
 }
