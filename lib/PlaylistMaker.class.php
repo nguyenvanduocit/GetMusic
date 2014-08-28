@@ -22,6 +22,7 @@ public function toXML()
 {
     $output = '<?xml version="1.0" encoding="utf-8"?>';
     $output .='<playlist version="1"><trackList>';
+    $output .= '<info>http://laptrinh.senviet.org</info>';
     foreach ($this->trackList as $key => $track) {
         $output .= $track->toXML();
     }

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+    <title>Song Stealing Generator</title>
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -55,8 +55,8 @@
         <div class="row">
             <div class="col-md-4" id="element1">
                 <h2>Zing MP3</h2>
-                <object type="application/x-shockwave-flash" data="xspf_player.swf?playlist_url=playlistGenerator1.xspf&autoplay=1&autoload=1&color=99CCFF&player_mode=small"" height="170" width="200" >
-                    <param name="movie" value="xspf_player.swf?playlist_url=playlistGenerator1.xspf&autoplay=1&autoload=1&color=99CCFF&player_mode=small"" />
+                <object type="application/x-shockwave-flash" data="xspf_player.swf?playlist_url=playlistGenerator1.xspf&autoplay=0&autoload=1&color=99CCFF" height="170" width="380" >
+                    <param name="movie" value="xspf_player.swf?playlist_url=playlistGenerator1.xspf&autoplay=0&autoload=1&color=99CCFF" />
                     <param name="allownetworking" value="internal" />
                     <param name="allowScriptAccess" value="never" />
                     <param name="enableJSURL" value="false" />
@@ -68,8 +68,8 @@
             </div>
             <div class="col-md-4" id="element2">
                 <h2>Sound Cloud</h2>
-                <object type="application/x-shockwave-flash" data="xspf_player.swf?playlist_url=playlistGenerator2.xspf&autoplay=0&autoload=1&color=99CCFF&player_mode=small"" height="170" width="200" >
-                    <param name="movie" value="xspf_player.swf?playlist_url=playlistGenerator2.xspf&autoplay=0&autoload=1&color=99CCFF&player_mode=small"" />
+                <object type="application/x-shockwave-flash" data="xspf_player.swf?playlist_url=playlistGenerator2.xspf&autoplay=1&autoload=1&color=99CCFF" height="170" width="380" >
+                    <param name="movie" value="xspf_player.swf?playlist_url=playlistGenerator2.xspf&autoplay=1&autoload=1&color=99CCFF" />
                     <param name="allownetworking" value="internal" />
                     <param name="allowScriptAccess" value="never" />
                     <param name="enableJSURL" value="false" />
@@ -81,8 +81,8 @@
             </div>
             <div class="col-md-4" id="element3">
                 <h2>Nhạc số</h2>
-                <object type="application/x-shockwave-flash" data="xspf_player.swf?playlist_url=playlistGenerator3.xspf&autoplay=0&autoload=1&color=99CCFF&player_mode=small"" height="170" width="200" >
-                    <param name="movie" value="xspf_player.swf?playlist_url=playlistGenerator3.xspf&autoplay=0&autoload=1&color=99CCFF&player_mode=small"" />
+                <object type="application/x-shockwave-flash" data="xspf_player.swf?playlist_url=playlistGenerator3.xspf&autoplay=0&autoload=1&color=99CCFF" height="170" width="380" >
+                    <param name="movie" value="xspf_player.swf?playlist_url=playlistGenerator3.xspf&autoplay=0&autoload=1&color=99CCFF" />
                     <param name="allownetworking" value="internal" />
                     <param name="allowScriptAccess" value="never" />
                     <param name="enableJSURL" value="false" />

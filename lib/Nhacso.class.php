@@ -27,7 +27,7 @@ class Nhacso extends GetTrackAbstract{
 		$content = curlClass::getInstance()->fetchURL($this->link);
 		$regex = '#xmlPath=(.+?)\&#si';
 		if(preg_match_all($regex, $content, $matches) == false)
-			return new Track();
+			return array(Track());
 		$xml=simplexml_load_file($matches[1][0], null, LIBXML_NOCDATA);
 
 		if ($xml)
