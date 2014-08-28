@@ -11,12 +11,6 @@ class ZippyShare extends GetTrackAbstract{
 		$this->link = $link;
 	}
 
-	public function checkLink() {
-		$regexlink_baihat = '/http\:\/\/(www\.)?mp3\.zing\.vn\/.*\/(.*)\.html/';
-		if (preg_match($regexlink_baihat, $this->link)) 
-			return true;
-		return false;
-	}
 
 	public function GetTrack() {
 		$output = array();
@@ -33,18 +27,15 @@ class ZippyShare extends GetTrackAbstract{
 		}
 		return $output;
 	}
-	private function GetFakePath()
-	{
-		$pageURL = (@$_SERVER["HTTPS"] == "on") ? "https://" : "http://";
-		if ($_SERVER["SERVER_PORT"] != "80")
-		{
-		    $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"];
-		} 
-		else 
-		{
-		    $pageURL .= $_SERVER["SERVER_NAME"];
-		}
-		$requestURIExploded = explode("?", $_SERVER["REQUEST_URI"]);
-		return $pageURL.$requestURIExploded[0];
-	}
+    private function GetFakePath()
+    {
+        $protocol = (@$_SERVER["HTTPS"] == "on") ? "https://" : "http://";
+        $url = $_SERVER['REQUEST_URI']; //returns the current URL
+        $parts = explode('/',$url);
+        $dir = $_SERVER['SERVER_NAME'];
+        for ($i = 0; $i < count($parts) - 1; $i++) {
+            $dir .= $parts[$i] . "/";
+        }
+        return $protocol.$dir;
+    }
 }

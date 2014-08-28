@@ -1,7 +1,8 @@
 <IfModule mod_rewrite.c>
 	Options +FollowSymlinks
 	RewriteEngine on
-	RewriteBase /addition/GetMusic/
+	RewriteBase /344/
 	RewriteRule ^soundcloud/(.*)/([0-9]+).mp3 http://api.soundcloud.com/tracks/$2/stream?client_id=$1 [nc]
 	RewriteRule ^zippyshare/(.*)/([0-9]+).(.*) http://$1.zippyshare.com/downloadMusic?key=$2&type=$3 [nc]
+	RewriteRule ^playlistGenerator([1-3]).xspf playlistGenerator.php?id=$1 [nc]
 </IfModule>

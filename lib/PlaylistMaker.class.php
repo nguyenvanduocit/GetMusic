@@ -18,16 +18,16 @@ class PlaylistMaker
         $this->trackList = $Tracks;
     }
 
-    public function toXML()
-    {
-    	$output = '<?xml version="1.0" encoding="utf-8"?>';
-    	$output .='<playlist version="1"><trackList>';
-    	foreach ($this->trackList as $key => $track) {
-    		$output .= $track->toXML();
-    	}
-    	$output .= '</trackList></playlist>';
-    	return $output;
+public function toXML()
+{
+    $output = '<?xml version="1.0" encoding="utf-8"?>';
+    $output .='<playlist version="1"><trackList>';
+    foreach ($this->trackList as $key => $track) {
+        $output .= $track->toXML();
     }
+    $output .= '</trackList></playlist>';
+    return $output;
+}
     public function toJson()
     {
         $output = '{';
