@@ -46,7 +46,7 @@ class Nhacso extends GetTrackAbstract{
 				case 'nghe-album':
 						$songs = $xml->playlist->song;
 						foreach ($songs as $key => $song) {
-							$output[] = new Track($song->artist, $song->name, $song->artist, trim($song->mp3link));
+							$output[] = new Track($song->artist, $song->name, $song->artist, trim($song->mp3link), "", $xml->playlist->img);
 						}
 						break;
 			}

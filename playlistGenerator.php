@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: text/xml; charset=utf-8');
-//header('Cache-Control: max-age=604800');
+header('Cache-Control: max-age=604800');
 header('Content-Transfer-Encoding: binary');
 require_once 'lib/SongStealingGenerator.php';
 if ($_GET['id'] == 1) {
